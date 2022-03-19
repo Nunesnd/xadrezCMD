@@ -10,6 +10,7 @@ namespace xadrezConsole
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Olá mundo");
         }
     }
 }
