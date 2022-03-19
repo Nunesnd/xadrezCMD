@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using tabuleiro;
 
 namespace xadrezConsole
 {
@@ -10,7 +7,12 @@ namespace xadrezConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Olá mundo");
+            Posicao P;
+
+            P = new Posicao(3, 4);
+
+            Console.WriteLine("Posição: " + P);
+            Console.ReadLine();
         }
     }
 }
