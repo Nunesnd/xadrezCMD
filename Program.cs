@@ -8,6 +8,8 @@ namespace xadrezConsole
     {
         static void Main(string[] args)
         {
+
+            /*
             try { 
                 Tabuleiro tab = new Tabuleiro(8, 8);
 
@@ -22,6 +24,12 @@ namespace xadrezConsole
             {
                 Console.WriteLine(e.Message);
             }
+            */
+
+            PosicaoXadrez pos = new PosicaoXadrez('c', 4);
+
+            Console.WriteLine(pos);
+            Console.WriteLine(pos.toPosicao());
 
             Console.WriteLine("Presione enter para fechar..........");
             Console.ReadLine();
