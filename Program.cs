@@ -2,61 +2,50 @@
 using tabuleiro;
 using xadrez;
 
-namespace xadrezConsole
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
+namespace xadrez_console {
+    class Program {
+        static void Main(string[] args) {
 
-            try { 
-                PartidaDeXadrez partida = new PartidaDeXadrez(); 
+            try {
+                PartidaDeXadrez partida = new PartidaDeXadrez();
 
-                while (!partida.terminada)
-                {
-                    try 
-                    { 
+                while (!partida.terminada) {
+
+                    try {
                         Console.Clear();
                         Tela.imprimirTabuleiro(partida.tab);
-
                         Console.WriteLine();
                         Console.WriteLine("Turno: " + partida.turno);
-                        Console.WriteLine("Aguardando jogador " + partida.jogadorAtual);
+                        Console.WriteLine("Aguardando jogada: " + partida.jogadorAtual);
 
                         Console.WriteLine();
-
-                        Console.Write("Digite a posição de origem: ");
+                        Console.Write("Origem: ");
                         Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeOrigem(origem);
 
-                        partida.validarPosicaoOrigem(origem);
+                        bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
 
-                        //destaque dos movimentos possíveis da peça
-                        bool[,] posicoesPossiveis = partida.tab.peca(origem).movPossiveis();
                         Console.Clear();
                         Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
 
-
                         Console.WriteLine();
-                        Console.Write("Digite a posição de destino: ");
+                        Console.Write("Destino: ");
                         Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
-                        partida.validarPosicaoDestino(origem, destino);
+                        partida.validarPosicaoDeDestino(origem, destino);
 
                         partida.realizaJogada(origem, destino);
                     }
-                    catch(TabuleiroException e)
-                    {
+                    catch (TabuleiroException e) {
                         Console.WriteLine(e.Message);
-                        Console.Read();
+                        Console.ReadLine();
                     }
                 }
 
             }
-            catch (TabuleiroException e)
-            {
+            catch (TabuleiroException e) {
                 Console.WriteLine(e.Message);
             }
 
-            Console.WriteLine("Presione enter para fechar..........");
             Console.ReadLine();
         }
     }
