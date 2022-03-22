@@ -13,7 +13,33 @@
             this.cor = cor;
             this.tab = tab;
             this.qteMovim = 0;
-            this.qteMovim = 0;
+        }
+
+        public void incrementarQteMovimentos()
+        {
+            qteMovim++;
+        }
+
+        public bool existeMovimentosPossiveis()
+        {
+            bool[,] mat = movPossiveis();
+            for (int i=0; i<tab.linhas; i++)
+            {
+                for (int j=0; j<tab.colunas; j++)
+                {
+                    if (mat[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+
+        }
+
+        public bool podeMoverPara(Posicao pos)
+        {
+            return movPossiveis()[pos.linha, pos.coluna];
         }
 
         public abstract bool[,] movPossiveis();
